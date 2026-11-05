@@ -105,5 +105,5 @@ that's the entire foundation of an IoT fleet: **device → platform → device**
 
 ---
 
-*ThingBoot builds open-source device SDKs and a self-hosted IoT platform.
+*ThingBoot provides free device SDKs and a self-hosted IoT platform.
 Questions? Open an [issue](https://github.com/Kevin-ThingBoot/thingboot-guides/issues).*
