@@ -104,5 +104,5 @@ mosquitto_pub -h 192.168.1.100 -t "things/esp32-demo/cmd" -m '{"relay":"on"}'
 
 ---
 
-*ThingBoot 维护开源设备端 SDK 与私有化 IoT 平台。有问题欢迎提
+*ThingBoot 提供免费商用的设备端 SDK 与私有化 IoT 平台。有问题欢迎提
 [issue](https://github.com/Kevin-ThingBoot/thingboot-guides/issues)。*
