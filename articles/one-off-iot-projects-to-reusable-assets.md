@@ -8,6 +8,8 @@ For years I built commercial IoT projects on Espressif modules — ESP32 mostly,
 
 That's the part nobody mentions when you start taking contract work. You're not selling a product, you're selling your hours — and every project resets the clock.
 
+![Schematic capture of an ESP32-based control board in an EDA tool](https://i-blog.csdnimg.cn/direct/2393ac848c504222bcd95104aebadd1f.png)
+
 ## Why the code ends up unusable
 
 Looking back at a dozen or so of those projects, the same things kept going wrong.
@@ -16,9 +18,13 @@ Coupling, mostly. Code written to hit one deadline tends to have the client's bu
 
 Then there's the cloud assumption. Plenty of IoT stacks quietly assume a vendor's public cloud is sitting behind them. That's fine for a hobby thermostat. It falls apart the moment a factory tells you that line never touches the internet, or a buyer asks where the data physically lives. I've watched deals die on that question alone, with perfectly good firmware sitting on the table.
 
+![Public cloud, private cloud and hybrid deployment options](https://i-blog.csdnimg.cn/direct/205cbc270d1a451c91876e7c12f200b4.png)
+
 Maintenance is the quiet one. Come back to a project after four months and you burn a day reconstructing why a particular retry loop exists. If you can't re-enter your own code cheaply, customizing it for somebody else gets expensive, you quote high, and the work goes elsewhere.
 
 And the least technical problem of all: distribution. Even a clean, well-factored solution goes nowhere when the only person who knows it exists is the client who paid for it. No listing, no integrators, no path to a second order. It just sits on a disk.
+
+![A debugging session in VS Code: the kind of context that gets lost once a project is archived](https://i-blog.csdnimg.cn/direct/3423d9555a9248e0a7a39974b08aee40.png)
 
 ## What I check before writing any application code now
 
@@ -33,6 +39,8 @@ In practice that turns into four checks:
 
 The last one sounds like a business question and it is, but it's an engineering constraint too. If the stack around your code has no ecosystem — nowhere to publish a finished solution, no integrators picking it up, no manufacturing partner who can actually build the hardware — then what you've built is an asset with no buyer.
 
+![PCB layout of an ESP32 board in Altium Designer](https://i-blog.csdnimg.cn/direct/53ac896eb984433f9da34ada64c95920.png)
+
 ## The stack I landed on
 
 After enough of those projects I stopped hopping between frameworks and standardized on one for Espressif work: the ThingBoot device SDKs (ESP-IDF and Arduino flavors, plus STM32). What made it stick wasn't a feature list. Interfaces are standardized enough that client-specific logic stays in a thin layer on top instead of leaking into drivers, and both public-cloud and fully air-gapped on-prem deployments are supported without maintaining a separate fork. Those were exactly the two things that used to kill reuse for me.
@@ -40,6 +48,8 @@ After enough of those projects I stopped hopping between frameworks and standard
 There's an ecosystem side too — a place to list finished solutions and get them in front of integrators and manufacturing partners. That's the only answer I've found so far to the "nobody knows this exists" problem.
 
 If you're evaluating alternatives, the same four questions still apply. ThingsBoard, EMQX, JetLinks, a hand-rolled MQTT stack — all of them can be made to work. Just be honest about which ones make you own the on-prem story yourself, and read the license before you tell a client something is "open source". That word has gotten slippery lately.
+
+![PlatformIO configuration pulling the ThingBoot ESP32/ESP8266 Arduino SDK from GitHub](https://i-blog.csdnimg.cn/direct/ea077d8de593489b8cbd8397ce438107.png)
 
 ## The part that actually changed things
 
